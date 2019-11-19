@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.tianque.datadisplay.server.mapper.DataComingSourceMapper">
+	<resultMap id="BaseResultMap"
+		type="com.tianque.datadisplay.server.model.DataComingSource">
+		<id column="id" jdbcType="BIGINT" javaType="java.lang.Long"
+			property="id" />
+		<result column="source_name" jdbcType="VARCHAR"
+			property="sourceName" />
+		<result column="database_info_id" jdbcType="BIGINT"
+			property="databaseInfoId" />
+		<result column="execute_sql" jdbcType="VARCHAR"
+			property="executeSql" />
+		<result column="description" jdbcType="VARCHAR"
+			property="description" />
+		<result column="create_date" jdbcType="TIMESTAMP"
+			property="createDate" />
+		<result column="update_date" jdbcType="TIMESTAMP"
+			property="updateDate" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id,
+		source_name,
+		execute_sql,
+		database_info_id,
+		description,
+		create_date,
+		update_date
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_data_coming_source
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="findDataComingSourceBySourceName"
+		parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_data_coming_source
+		where source_name = #{sourceName}
+	</select>
+	<select id="findOtherDataComingSourcesByObject"
+		parameterType="com.tianque.datadisplay.server.model.DataComingSource"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_data_coming_source
+		where source_name = #{sourceName} and id not
+		in(#{id})
+	</select>
+
+	<select id="findDataComingSourcesBySourceNameLike"
+		parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_data_coming_source
+		where source_name like CONCAT(#{sourceName},
+		'%')
+	</select>
+
+	<select id="findAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_data_coming_source
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		tb_data_coming_source
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<delete id="deleteByIds" parameterType="java.lang.Long">
+		delete from
+		tb_data_coming_source
+		where id in
+		<foreach item="id" collection="array" open="(" separator=","
+			close=")">
+			#{id,jdbcType=BIGINT}
+		</foreach>
+	</delete>
+	<update id="updateByPrimaryKey"
+		parameterType="com.tianque.datadisplay.server.model.DataComingSource">
+		update tb_data_coming_source
+		<set>
+			<if test="sourceName != null">
+				source_name = #{sourceName,jdbcType=VARCHAR},
+			</if>
+			<if test="executeSql != null">
+				execute_sql = #{executeSql,jdbcType=VARCHAR},
+			</if>
+			<if test="databaseInfoId != null">
+				database_info_id = #{databaseInfoId,jdbcType=BIGINT},
+			</if>
+			description =
+			#{description,jdbcType=VARCHAR},
+			update_date =
+			CURRENT_TIMESTAMP()
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<insert id="insert" keyProperty="id" useGeneratedKeys="true"
+		parameterType="com.tianque.datadisplay.server.model.DataComingSource">
+		<selectKey keyProperty="id" resultType="long">
+			select
+			LAST_INSERT_ID()
+		</selectKey>
+		insert into tb_data_coming_source ( source_name,
+		execute_sql,
+		database_info_id,
+		description,
+		create_date, update_date ) values
+		(#{sourceName,jdbcType=VARCHAR},
+		#{executeSql,jdbcType=VARCHAR},
+		#{databaseInfoId,jdbcType=BIGINT},
+		#{description,jdbcType=VARCHAR},
+		CURRENT_TIMESTAMP(),
+		#{updateDate,jdbcType=VARCHAR} )
+	</insert>
+</mapper>

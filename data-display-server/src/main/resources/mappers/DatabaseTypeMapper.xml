@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.tianque.datadisplay.server.mapper.DatabaseTypeMapper">
+	<resultMap id="BaseResultMap"
+		type="com.tianque.datadisplay.server.model.DatabaseType">
+		<id column="id" jdbcType="BIGINT" javaType="java.lang.Long"
+			property="id" />
+		<result column="type_name" jdbcType="VARCHAR"
+			property="typeName" />
+		<result column="type_ename" jdbcType="VARCHAR"
+			property="typeEname" />
+		<result column="description" jdbcType="VARCHAR"
+			property="description" />
+		<result column="create_date" jdbcType="TIMESTAMP"
+			property="createDate" />
+		<result column="update_date" jdbcType="TIMESTAMP"
+			property="updateDate" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id,
+		type_name,
+		type_ename,
+		description,
+		create_date,
+		update_date
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_database_type
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="findDatabaseTypeByTypeEname"
+		parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_database_type
+		where type_name = #{typeName}
+	</select>
+	<select id="findOtherDatabaseTypesByObject"
+		parameterType="com.tianque.datadisplay.server.model.DatabaseType"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_database_type
+		where type_name = #{typeName} and id not
+		in(#{id})
+	</select>
+
+	<select id="findDatabaseTypesByTypeEnameLike"
+		parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_database_type
+		where type_name like CONCAT(#{typeName},
+		'%')
+	</select>
+
+	<select id="findAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_database_type
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		tb_database_type
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<delete id="deleteByIds" parameterType="java.lang.Long">
+		delete from
+		tb_database_type
+		where id in
+		<foreach item="id" collection="array" open="(" separator=","
+			close=")">
+			#{id,jdbcType=BIGINT}
+		</foreach>
+	</delete>
+	<update id="updateByPrimaryKey"
+		parameterType="com.tianque.datadisplay.server.model.DatabaseType">
+		update tb_database_type
+		<set>
+			<if test="typeName != null">
+				type_name = #{typeName,jdbcType=VARCHAR},
+			</if>
+			<if test="typeEname != null">
+				type_ename = #{typeEname,jdbcType=VARCHAR},
+			</if>
+			description =
+			#{description,jdbcType=VARCHAR},
+			update_date =
+			CURRENT_TIMESTAMP()
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<insert id="insert" keyProperty="id" useGeneratedKeys="true"
+		parameterType="com.tianque.datadisplay.server.model.DatabaseType">
+		<selectKey keyProperty="id" resultType="long">
+			select
+			LAST_INSERT_ID()
+		</selectKey>
+		insert into tb_database_type ( type_name, type_ename,
+		description,
+		create_date, update_date ) values
+		(#{typeName,jdbcType=VARCHAR},
+		#{typeEname,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR},
+		CURRENT_TIMESTAMP(),
+		#{updateDate,jdbcType=VARCHAR} )
+	</insert>
+</mapper>

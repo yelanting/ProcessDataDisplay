@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<title>应用信息列表</title>
+<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css"
+	media="all" />
+<link rel="stylesheet" href="/layui/css/layui.css" media="all">
+<link rel="stylesheet" href="listApplicationInfo.css" media="all">
+<link rel="stylesheet" href="/css/public.css" media="all" />
+</head>
+<body class="childrenBody">
+	<blockquote class="layui-elem-quote quoteBox">
+		<form class="layui-form">
+			<div class="layui-inline">
+				<div class="layui-input-inline">
+					<input id="serachApplicationInfoContent" type="text"
+						class="layui-input searchVal" placeholder="请输入要搜索的应用名称或英文名"
+						maxLength=50 />
+				</div>
+			</div>
+			<div class="layui-inline">
+				<a id="searchApplicationInfo" class="layui-btn search_btn"
+					data-type="reload">搜索</a>
+			</div>
+			<div class="layui-inline">
+				<a id="addApplicationInfo_btn"
+					class="layui-btn layui-btn-normal addApplicationInfo_btn"
+					title="添加">添加</a>
+			</div>
+			<div class="layui-inline">
+				<a id="deleteApplicationInfoInBatch"
+					class="layui-btn layui-btn-danger layui-btn-normal deleteApplicationInfoInBatch"
+					lay-event="deleteApplicationInfoInBatch"
+					lay-filter="deleteApplicationInfoInBatch" title="批量删除">批量删除</a>
+			</div>
+
+			<div class="layui-inline">
+				<a id="refreshApplicationInfoList"
+					class="layui-btn layui-btn-success layui-btn-normal refreshApplicationInfoList"
+					lay-event="refreshApplicationInfoList"
+					lay-filter="refreshApplicationInfoList">刷新</a>
+			</div>
+		</form>
+	</blockquote>
+	<table class="layui-hide" id="applicationInfoListTable"
+		lay-filter="applicationInfoListTable"></table>
+	<script type="text/html" id="operationBar">
+			{{# if(d.defaultApp != "true" && d.defaultApp != true){}}
+				<a id="edit" class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit" title="修改">
+					<i class="fa fa-pencil"></i></a>
+				<a id="del" class="layui-btn layui-btn-danger   layui-btn-xs" lay-event="del" title="删除">
+					<i class="fa fa-trash"></i>
+				</a>
+            {{# } else{}}
+                <span>默认应用不可操作</span>
+            {{# } }}
+        </script>
+
+	<script src="/layui/layui.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+	<script src="commonOperation.js"></script>
+	<script src="listApplicationInfo.js"></script>
+</body>
+</html>

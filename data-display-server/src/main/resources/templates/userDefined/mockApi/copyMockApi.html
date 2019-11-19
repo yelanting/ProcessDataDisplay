@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>修改MockApi</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="/css/public.css" media="all" />
+</head>
+<body>
+	<form id="copyMockApiForm" class="layui-form layui-form-pane"
+		method="post" lay-filter="copyMockApiForm">
+		<div class="layui-form-item">
+			<label class="layui-form-label">名称</label>
+			<div class="layui-input-block">
+				<input type="text" id="apiName" name="apiName"
+					class="layui-input apiName" lay-verify="apiName"
+					placeholder="请输入接口名称" maxLength=50>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">接口路径</label>
+			<div class="layui-input-block">
+				<input type="text" id="apiPath" name="apiPath"
+					class="layui-input apiPath" placeholder="请输入接口路径"
+					lay-verify="apiPath" maxLength=500 />
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label formItem-required" title="请求类型">请求类型</label>
+			<div class="layui-input-block layui-form">
+				<select class="layui-form" id="requestMethodType"
+					name="requestMethodType" lay-verify="required"
+					lay-filter="requestMethodType" lay-search>
+					<option value='GET' selected>GET</option>
+					<option value='POST'>POST</option>
+					<option value='PUT'>PUT</option>
+					<option value='DELETE'>DELETE</option>
+					<option value='PATCH'>PATCH</option>
+					<option value='HEAD'>HEAD</option>
+					<option value='OPTIONS'>OPTIONS</option>
+					<option value='TRACE'>TRACE</option>
+				</select>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label formItem-required" title="请求Mime类型">请求Mime类型</label>
+			<div class="layui-input-block layui-form">
+				<select class="layui-form" id="requestMimeType"
+					name="requestMimeType" lay-verify="required"
+					lay-filter="requestMimeType" lay-search>
+					<option value='JSON' selected>JSON</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label formItem-required" title="关联应用">关联应用</label>
+			<div class="layui-input-block layui-form">
+				<select class="layui-form" id="applicationId" name="applicationId"
+					lay-verify="required" lay-filter="applicationId" lay-search>
+				</select>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">输入参数</label>
+			<div class="layui-input-block">
+				<textarea id="apiParams" name="apiParams"
+					class="layui-input apiParams" placeholder="请输入接口入参"
+					lay-verify="apiParams" maxLength=5000 ></textarea>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">预期返回</label>
+			<div class="layui-input-block">
+				<textarea id="expectedResponse" name="expectedResponse"
+					class="layui-input expectedResponse" placeholder="预期返回"
+					lay-verify="expectedResponse" maxLength=5000 ></textarea>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">备注</label>
+			<div class="layui-input-block">
+				<textarea id="description" name="description"
+					class="layui-textarea description" placeholder="请输入备注"
+					lay-verify="description" maxLength=100></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button id="copyMockApiSubmit" class="layui-btn" lay-submit=""
+					lay-filter="copyMockApiSubmit">立即提交</button>
+				<button id="copyReset" type="reset" style="display: none"
+					class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript" src="/layui/layui.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../commonCheck.js"></script>
+	<script type="text/javascript" src="../../CommonUtil.js"></script>
+	<script type="text/javascript" src="commonOperation.js"></script>
+	<script type="text/javascript" src="copyMockApi.js"></script>
+</body>
+</html>

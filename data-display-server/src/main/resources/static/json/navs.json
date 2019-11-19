@@ -1,0 +1,109 @@
+{
+	"contentManagement": [
+		{
+			"title": "可视化管理",
+			"icon": "&#xe630;",
+			"href": "",
+			"spread": false,
+			"children": [
+				{
+					"title": "过程数据管理",
+					"icon": "&#xe630;",
+					"href": "userDefined/applicationInfo/listApplicationInfo.html",
+					"spread": false
+				},
+				{
+					"title": "可视化页面",
+					"icon": "&#xe630;",
+					"href": "userDefined/mockApi/listMockApi.html",
+					"spread": false
+				},
+				{
+					"title": "数据库类型管理",
+					"icon": "&#xe630;",
+					"href": "userDefined/applicationInfo/listApplicationInfo.html",
+					"spread": false
+				},
+				{
+					"title": "数据库信息管理",
+					"icon": "&#xe630;",
+					"href": "userDefined/applicationInfo/listApplicationInfo.html",
+					"spread": false
+				}
+			]
+		},
+		{
+			"title": "其他页面",
+			"icon": "&#xe630;",
+			"href": "",
+			"spread": false,
+			"children": [
+				{
+					"title": "404页面",
+					"icon": "&#xe61c;",
+					"href": "page/404.html",
+					"spread": false
+				},
+				{
+					"title": "登录",
+					"icon": "&#xe609;",
+					"href": "page/login/login.html",
+					"spread": false,
+					"target": "_blank"
+				}
+			]
+		}
+	],
+	"memberCenter": [
+	],
+	"systemeSttings": [
+		{
+			"title": "系统基本参数",
+			"icon": "&#xe631;",
+			"href": "page/systemSetting/basicParameter.html",
+			"spread": false
+		},
+		{
+			"title": "图标管理",
+			"icon": "&#xe857;",
+			"href": "page/systemSetting/icons.html",
+			"spread": false
+		},
+		{
+			"title": "系统信息",
+			"icon": "&#xe857;",
+			"href": "",
+			"spread": false,
+			"children": [
+				{
+					"title": "性能信息",
+					"icon": "&#xe630;",
+					"href": "userDefined/systemInfo/listSystemInfo.html",
+					"spread": false
+				},
+				{
+					"title": "druid监控",
+					"icon": "&#xe630;",
+					"href": "/druid",
+					"spread": false
+				}
+			]
+		},
+		{
+			"title": "全局参数配置",
+			"icon": "&#xe631;",
+			"href": "userDefined/globalParamConfig/listGlobalParam.html",
+			"spread": false
+		}
+	],
+	"seraphApi": [
+		{
+			"title": "后台接口文档",
+			"icon": "icon-mokuai",
+			"href": "swagger-ui.html",
+			"spread": false
+		}
+	]
+}
+
+

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>查看MockApi信息</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="/css/public.css" media="all" />
+</head>
+<body>
+	<form id="addMockApiForm" class="layui-form layui-form-pane"
+		method="post">
+		<div class="layui-form-item">
+			<label class="layui-form-label">ID</label>
+			<div class="layui-input-block">
+				<input type="text" id="id" name="id" class="layui-input id"
+					lay-verify="id" placeholder="暂无数据" disabled>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">api名称</label>
+			<div class="layui-input-block">
+				<input type="text" id="apiName" name="apiName"
+					class="layui-input apiName" lay-verify="apiName" placeholder="暂无数据"
+					disabled>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">apiPath</label>
+			<div class="layui-input-block">
+				<input type="text" id="apiPath" name="apiPath"
+					class="layui-input apiPath" placeholder="暂无数据" disabled />
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">关联应用</label>
+			<div class="layui-input-block">
+				<input type="text" id="applicationId" name="applicationId"
+					class="layui-input applicationId" placeholder="暂无数据" disabled />
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">请求类型</label>
+			<div class="layui-input-block">
+				<input type="text" id="requestMethodType" name="requestMethodType"
+					class="layui-input requestMethodType" placeholder="暂无数据" disabled />
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">请求Mime类型</label>
+			<div class="layui-input-block">
+				<input type="text" id="requestMimeType" name="requestMimeType"
+					class="layui-input requestMimeType" placeholder="暂无数据" disabled />
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">入参</label>
+			<div class="layui-input-block">
+				<input type="text" id="apiParams" name="apiParams"
+					class="layui-input apiParams" placeholder="暂无数据" disabled />
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">预期返回</label>
+			<div class="layui-input-block">
+				<input type="text" id="expectedResponse" name="expectedResponse"
+					class="layui-input expectedResponse" placeholder="暂无数据" disabled />
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">备注</label>
+			<div class="layui-input-block">
+				<input type="text" id="description" name="description"
+					class="layui-input description" placeholder="暂无数据" disabled />
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript" src="/layui/layui.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../commonCheck.js"></script>
+</body>
+</html>

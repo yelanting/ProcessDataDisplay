@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.tianque.datadisplay.server.mapper.DatabaseInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="com.tianque.datadisplay.server.model.DatabaseInfo">
+		<id column="id" jdbcType="BIGINT" javaType="java.lang.Long"
+			property="id" />
+		<result column="database_name" jdbcType="VARCHAR"
+			property="databaseName" />
+		<result column="database_ip" jdbcType="VARCHAR"
+			property="databaseIp" />
+		<result column="connect_url" jdbcType="VARCHAR"
+			property="connectUrl" />
+		<result column="instance_name" jdbcType="VARCHAR"
+			property="instanceName" />
+		<result column="username" jdbcType="VARCHAR"
+			property="username" />
+		<result column="password" jdbcType="VARCHAR"
+			property="password" />
+		<result column="port" jdbcType="BIGINT" property="port" />
+		<result column="database_type_id" jdbcType="BIGINT"
+			property="databaseTypeId" />
+		<result column="description" jdbcType="VARCHAR"
+			property="description" />
+		<result column="create_date" jdbcType="TIMESTAMP"
+			property="createDate" />
+		<result column="update_date" jdbcType="TIMESTAMP"
+			property="updateDate" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id,
+		database_name,
+		database_ip,
+		connect_url,
+		instance_name,
+		database_type_id,
+		port,
+		username,
+		password,
+		description,
+		create_date,
+		update_date
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_database_info
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="findDatabaseInfoByDatabaseName"
+		parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_database_info
+		where database_name = #{databaseName}
+	</select>
+	<select id="findOtherDatabaseInfosByObject"
+		parameterType="com.tianque.datadisplay.server.model.DatabaseInfo"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_database_info
+		where database_name = #{databaseName} and id not
+		in(#{id})
+	</select>
+
+	<select id="findDatabaseInfosByDatabaseNameLike"
+		parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_database_info
+		where database_name like CONCAT(#{databaseName},
+		'%')
+	</select>
+
+	<select id="findAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_database_info
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		tb_database_info
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<delete id="deleteByIds" parameterType="java.lang.Long">
+		delete from
+		tb_database_info
+		where id in
+		<foreach item="id" collection="array" open="(" separator=","
+			close=")">
+			#{id,jdbcType=BIGINT}
+		</foreach>
+	</delete>
+	<update id="updateByPrimaryKey"
+		parameterType="com.tianque.datadisplay.server.model.DatabaseInfo">
+		update tb_database_info
+		<set>
+			<if test="databaseName != null">
+				database_name = #{databaseName,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			database_ip = #{databaseIp,jdbcType=VARCHAR},
+			connect_url =
+			#{connectUrl,jdbcType=VARCHAR},
+			instance_name =
+			#{instanceName,jdbcType=VARCHAR},
+			database_type_id =
+			#{databaseTypeId,jdbcType=BIGINT},
+			port = #{port,jdbcType=BIGINT},
+			description =
+			#{description,jdbcType=VARCHAR},
+			update_date =
+			CURRENT_TIMESTAMP()
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<insert id="insert" keyProperty="id" useGeneratedKeys="true"
+		parameterType="com.tianque.datadisplay.server.model.DatabaseInfo">
+		<selectKey keyProperty="id" resultType="long">
+			select
+			LAST_INSERT_ID()
+		</selectKey>
+		insert into tb_database_info (
+		database_name,
+		database_ip,
+		connect_url,
+		instance_name,
+		database_type_id,
+		port,
+		username,
+		password,
+		description,
+		create_date,
+		update_date ) values
+		(#{databaseName,jdbcType=VARCHAR},
+		#{databaseIp,jdbcType=VARCHAR},
+		#{connectUrl,jdbcType=VARCHAR},
+		#{instanceName,jdbcType=VARCHAR},
+		#{databaseTypeId,jdbcType=BIGINT},
+		#{port,jdbcType=BIGINT},
+		#{username,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR},
+		CURRENT_TIMESTAMP(),
+		#{updateDate,jdbcType=VARCHAR} )
+	</insert>
+</mapper>
