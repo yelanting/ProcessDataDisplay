@@ -26,7 +26,7 @@
 		<jenkins.rest.version>0.0.13</jenkins.rest.version>
 		<httpclient.version>4.5.8</httpclient.version>
 		<mock-server.version>5.6.1</mock-server.version>
-		<mongodb.driver.version>3.11.2</mongodb.driver.version>
+		<mongodb.driver.version>3.11.3</mongodb.driver.version>
 	</properties>
 	<modules>
 		<module>data-display-commons-util</module>
